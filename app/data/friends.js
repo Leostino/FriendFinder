@@ -1,14 +1,17 @@
-let friendsData = [{
-    name:"Ahmed",
-    photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+// friends array with properties and values
+
+let friends = [{
+
+    name:"Adam Sandler",
+    photo:"https://www.imdb.com/name/nm0001191/mediaviewer/rm1292077056",
     scores: [5, 1, 4, 4, 5, 1, 2, 5, 4, 1]
 },{
-    name: "Number 2",
-    photo:"https://upload.wikimedia.org/wikipedia/en/thumb/e/e5/No_2_APTSWSM.jpg/200px-No_2_APTSWSM.jpg",
+    name: "Christina Milian",
+    photo:"https://ethnicelebs.com/wp-content/uploads/2007/12/christina-milian-shutterstock_91257713.jpg",
     scores: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 },{
-    name: "The One",
-    photo:"https://s-media-cache-ak0.pinimg.com/564x/dd/31/d2/dd31d2dd156204fcf9b6aa1c54455adb.jpg",
+    name: "Ryan Reynolds",
+    photo:"https://vignette.wikia.nocookie.net/marvelmovies/images/6/61/Ryan_Reynolds.jpg/revision/latest/scale-to-width-down/250?cb=20160608175951",
     scores: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 },{
     name: "Trinity",
@@ -19,4 +22,4 @@ let friendsData = [{
 
 
 
-module.exports = friendsData;
+module.exports = friends;
