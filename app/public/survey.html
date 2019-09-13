@@ -23,6 +23,8 @@
 
   <div class="container">
 
+    <h1 class="text-center mt-1"><i class="fa fa-binoculars" aria-hidden="true"></i> Match</h1>
+
     <h2>Survey Questions</h2>
     <hr>
 
@@ -36,7 +38,7 @@
     <hr>
 
     <h3><strong>Question 1</strong></h3>
-    <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+    <h4>You are the first to take charge in social gatherings or group projects</h4>
     <select class="chosen-select" id="q1">
       <option value=""></option>
       <option value="1">1 (Strongly Disagree)</option>
@@ -47,7 +49,7 @@
     </select>
 
     <h3><strong>Question 2</strong></h3>
-    <h4>Generally speaking, you rely more on your experience than your imagination.</h4>
+    <h4>You consider yourself to be more practical than artistic.</h4>
     <select class="chosen-select" id="q2">
       <option value=""></option>
       <option value="1">1 (Strongly Disagree)</option>
@@ -71,7 +73,7 @@
 
 
     <h3><strong>Question 4</strong></h3>
-    <h4>You rarely do something just out of sheer curiosity.</h4>
+    <h4>You often find yourself lost in thought when you are walking in nature</h4>
     <select class="chosen-select" id="q4">
       <option value=""></option>
       <option value="1">1 (Strongly Disagree)</option>
@@ -95,7 +97,7 @@
 
 
     <h3><strong>Question 6</strong></h3>
-    <h4>It is often difficult for you to relate to other people’s feelings.</h4>
+    <h4>You prefer Front End design over Back End scripting.</h4>
     <select class="chosen-select" id="q6">
       <option value=""></option>
       <option value="1">1 (Strongly Disagree)</option>
@@ -107,7 +109,7 @@
 
 
     <h3><strong>Question 7</strong></h3>
-    <h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
+    <h4>You have fun in a light-hearted atmosphere; prefering not to take things too seriously.</h4>
     <select class="chosen-select" id="q7">
       <option value=""></option>
       <option value="1">1 (Strongly Disagree)</option>
@@ -160,7 +162,7 @@
     <hr>
     <footer class="footer">
       <div class="container">
-        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
+        <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a> | <a href="home.html">Home</a></p>
       </div>
     </footer>
 
@@ -296,6 +298,96 @@
         alert("Please fill out all fields before submitting!");
 
       }
+
+    });
+
+
+
+    $(".container").on("keypress", function(event) {
+
+      event.preventDefault();
+
+      if(event.keyCode === 13) {
+
+        validateForm();
+
+      }
+
+      // Form validation
+
+      function validateForm() {
+
+        let isValid = true;
+
+        $(".form-control").each(function() {
+
+          if ($(this).val() === "") {
+
+            isValid = false;
+
+          }
+
+        });
+
+        $(".chosen-select").each(function() {
+
+          if ($(this).val() === "") {
+
+            isValid = false;
+
+          }
+
+        });
+
+        return isValid;
+  
+      }
+
+      // If all required fields are filled
+
+      if (validateForm()) {
+
+        // Create an object for the user"s data
+
+        let userData = {
+        name: $("#name").val(),
+        photo: $("#photo").val(),
+        scores: [
+        $("#q1").val(),
+        $("#q2").val(),
+        $("#q3").val(),
+        $("#q4").val(),
+        $("#q5").val(),
+        $("#q6").val(),
+        $("#q7").val(),
+        $("#q8").val(),
+        $("#q9").val(),
+        $("#q10").val()
+        ]};
+      
+        // AJAX post the data to the friends API.
+
+        $.post("/api/friends", userData, function(data) {
+
+          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+    
+          $("#match-name").text(data.name);
+
+          $("#match-img").attr("src", data.photo);
+
+          // Show the modal with the best match
+
+          $("#results-modal").modal("toggle");
+
+        });
+
+      }else{
+
+        alert("Please fill out all fields before submitting!");
+
+
+      }
+
 
     });
     
