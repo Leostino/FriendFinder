@@ -45,7 +45,7 @@ function apiRoutes(app) {
 
     newFriend.scores = scoresArray;
 
-    // Cross check the new friend entry with the existing ones
+    // Compare the new friend's entry with the existing ones
       
     var scoreComparisionArray = [];
        
